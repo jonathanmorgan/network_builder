@@ -18,8 +18,8 @@ import logging
 
 # network_builder imports
 
-# django-utils imports
-from django_utils import query_filter
+# python_utilities.django_utils imports
+from python_utilities.django_utils import query_filter
 
 class AttributeContainer( object ):
 

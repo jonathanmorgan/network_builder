@@ -17,17 +17,17 @@ Django:
 
 * install and configure a django application named "research" (including setting up database in settings.py).
 
-    ** In the folder where you want your application, run:
+    * In the folder where you want your application, run:
     
     django-admin.py startproject research
 
-    ** This creates the following folder structure and files (among others):
+    * This creates the following folder structure and files (among others):
         /research
             manage.py
             /research
                 settings.py
     
-    ** Edit the research/research/settings.py file and update it with details of your database configuration (https://docs.djangoproject.com/en/dev/intro/tutorial01/#database-setup).
+    * Edit the research/research/settings.py file and update it with details of your database configuration (https://docs.djangoproject.com/en/dev/intro/tutorial01/#database-setup).
 
 * install and configure the network_builder application.
 

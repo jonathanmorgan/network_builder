@@ -19,17 +19,17 @@ Django:
 
     * In the folder where you want your application, run:
     
-	    django-admin.py startproject research
+		django-admin.py startproject research
 
     * This creates the following folder structure and files (among others):
 
-        /research
+        	/research
 
-            manage.py
+            	manage.py
 
-            /research
+            	/research
 
-                settings.py
+                	settings.py
     
     * Edit the research/research/settings.py file and update it with details of your database configuration (https://docs.djangoproject.com/en/dev/intro/tutorial01/#database-setup).
 

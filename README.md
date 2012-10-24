@@ -13,6 +13,8 @@ To install:
 Django:
 -------
 
+* before you do anything else, if you aren't familiar with django, it is good to just run through the django tutorial, to get an idea how it all works, what it takes to configure django to talk with a database (http://docs.djangoproject.com/en/dev/intro/tutorial01/).
+
 * install and configure django to talk with a database (http://docs.djangoproject.com/en/dev/intro/tutorial01/).
 
 * install and configure a django application named "research" (including setting up database in settings.py).
@@ -47,7 +49,7 @@ Django:
 
     to the python list stored in INSTALLED_APPS.
 
-    * initialize the database - go into directory where manage.py is installed, and run "python manage.py syncdb".
+    * initialize the database - Once you either make a fresh install and configure settings.py or install the application in an existing django install, go into directory where manage.py is installed, and run "python manage.py syncdb".
 
     * configure your web server so it knows of your wsgi.py file.  If apache, need to make sure mod_wsgi is installed, add something like this to the apache config, in the Virtual Host you want to host the django application:
     
@@ -56,3 +58,41 @@ Django:
     		WSGIScriptAlias /sourcenet <path_to_django_app>/<app_name>/<app_name>/wsgi.py
     
 * play (and hope it doesn't break!).
+
+Using Network Builder
+=====================
+
+For now, just have classes/models that hold network information pre-query.
+
+Configuration
+-------------
+
+* use manage.py to load the attribute types fixtures:
+
+    python manage.py loaddata attribute_type.json
+
+* use manage.py to load the attribute derivation types fixtures:
+
+    python manage.py loaddata attribute_derivation_type.json
+    
+* if you want them, create node types and/or tie types.
+
+* play (and hope it doesn't break!).  By play, I mean build programs that create nodes, associate attributes to them, and create ties of multiple types between them, then use that data for network analysis!  Eventually, planning on building an output framework so that networks in this database can be easily output to common file formats for social network analysis.  For now, though, you'll have to write your output yourself.
+
+* to include the network builder classes in another program, you'll need to import the classes.  For example, to use nodes, node types, ties, and tie types, after making sure that the network_builder packages is in your python path, you'd include the following imports in your python source file:
+
+    # THEREPOOFDOOM network classes, for building messaging networks for users.
+    from network_builder.models import Node
+    from network_builder.models import Node_Type
+    from network_builder.models import Tie
+    from network_builder.models import Tie_Type
+
+    OR, you could just import the network_builder package if you want to maintain namespace separation (in case you have a Node class already, for example):
+    
+    import network_builder
+    
+    THEN reference:
+    
+    network_builder.models.Node()
+    
+    to create a Node instance, etc.

@@ -127,6 +127,15 @@ class Name_Value_Pair_Model( Labeled_Model ):
     '''
 
     #----------------------------------------------------------------------
+    # Constants-ish
+    #----------------------------------------------------------------------
+
+    # Parameter names
+    PARAM_QUERY_SET = "query_set"
+    PARAM_NAME_EQUALS = "name_equals"
+    PARAM_VALUE_EQUALS = "value_equals"
+
+    #----------------------------------------------------------------------
     # fields
     #----------------------------------------------------------------------
 
@@ -141,7 +150,81 @@ class Name_Value_Pair_Model( Labeled_Model ):
         abstract = True
 
     #----------------------------------------------------------------------
-    # methods
+    # class methods
+    #----------------------------------------------------------------------
+
+
+    @classmethod
+    def lookup( cls, params_IN = None, *args, **kwargs ):
+        
+        '''
+        Accepts properties that can be used to look up specific name-value
+           pairs, returns QuerySet of instances that fit lookup criteria.
+        Parameters inherited from parent:
+        - Node_Attribute_Value.PARAM_NAME - name of attribute we want.
+        - Node_Attribute_Value.PARAM_VALUE - value for attribute we want.
+        '''
+        
+        # return reference
+        results_qs_OUT = None
+
+        # Declare variables
+        query_set_IN = None
+        name_equals_IN = ""
+        value_equals_IN = ""
+        
+        # got params?
+        if ( params_IN ):
+            
+            # got a query set?
+            if cls.PARAM_QUERY_SET in params_IN:
+                
+                # got one.  Use it.
+                results_qs_OUT = params_IN[ cls.PARAMS_QUERY_SET ]
+                
+            else:
+            
+                # trouble - no result set - use class to make one.
+                results_qs_OUT = cls.objects.all()
+            
+            #-- END check to see if query set passed in. --#
+            
+            # got name_equals?
+            if cls.PARAM_NAME_EQUALS in params_IN:
+                
+                # got one.  Use it.
+                name_equals_IN = params_IN[ cls.PARAM_NAME_EQUALS ]
+                
+                # filter query set.
+                results_qs_OUT.filter( name__iexact = name_equals_IN )
+                
+            #-- END check to see if name_equals passed in. --#
+            
+            # got value_equals?
+            if cls.PARAM_VALUE_EQUALS in params_IN:
+                
+                # got one.  Use it.
+                value_equals_IN = params_IN[ cls.PARAM_VALUE_EQUALS ]
+                
+                # filter query set.
+                results_qs_OUT.filter( value__iexact = value_equals_IN )
+                
+            #-- END check to see if value_equals passed in. --#
+            
+        else:
+            
+            # no params - use class to return all instances.
+            results_qs_OUT = cls.objects.all()
+            
+        #-- END check to see if we have any params. --#
+        
+        return results_qs_OUT
+
+    #-- END method lookup() --#
+
+
+    #----------------------------------------------------------------------
+    # instance methods
     #----------------------------------------------------------------------
 
 
@@ -156,6 +239,7 @@ class Name_Value_Pair_Model( Labeled_Model ):
         return string_OUT
         
     #-- END method __unicode__() --#
+
 
 #= END Name_Value_Pair_Model Abstract Model ============================================
 
@@ -455,7 +539,7 @@ class Node_Attribute_Value ( Name_Value_Pair_Model ):
     
 
     #----------------------------------------------------------------------
-    # methods
+    # instance methods
     #----------------------------------------------------------------------
 
 

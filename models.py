@@ -160,9 +160,11 @@ class Name_Value_Pair_Model( Labeled_Model ):
         '''
         Accepts properties that can be used to look up specific name-value
            pairs, returns QuerySet of instances that fit lookup criteria.
-        Parameters inherited from parent:
-        - Node_Attribute_Value.PARAM_NAME - name of attribute we want.
-        - Node_Attribute_Value.PARAM_VALUE - value for attribute we want.
+
+        Parameters:
+        - Name_Value_Pair_Model.PARAM_QUERY_SET - QuerySet instance to use instead of creating a new one.
+        - Name_Value_Pair_Model.PARAM_NAME - name of attribute we want.
+        - Name_Value_Pair_Model.PARAM_VALUE - value for attribute we want.
         '''
         
         # return reference

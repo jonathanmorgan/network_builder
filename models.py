@@ -808,7 +808,32 @@ class Tie( Dated_Model ):
         string_OUT = ''
 
         # declare variables
-        string_OUT = str( self.id ) + " - " + self.name
+        string_OUT = str( self.id )
+        
+        # got a type?
+        if ( self.tie_type ):
+            
+            # yes - output label
+            string_OUT += " ( " + self.tie_type.label + " ) "
+            
+        #-- END check to see if tie type.
+        
+        # from and to
+        string_OUT += " - from " + str( self.from_node_id ) + " to " + str( self.to_node_id )
+        
+        if ( self.original_table ):
+            
+            # original table is set
+            string_OUT += "; original table: " + self.original_table
+            
+        #-- END check for original table --#
+    
+        if ( self.original_id ):
+            
+            # original ID present - output it.
+            string_OUT += ", id: " + self.original_id
+            
+        #-- END check to see if original ID --#
         
         return string_OUT
         

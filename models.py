@@ -198,7 +198,7 @@ class Name_Value_Pair_Model( Labeled_Model ):
                 name_equals_IN = params_IN[ cls.PARAM_NAME_EQUALS ]
                 
                 # filter query set.
-                results_qs_OUT.filter( name__iexact = name_equals_IN )
+                results_qs_OUT = results_qs_OUT.filter( name__iexact = name_equals_IN )
                 
             #-- END check to see if name_equals passed in. --#
             
@@ -209,7 +209,7 @@ class Name_Value_Pair_Model( Labeled_Model ):
                 value_equals_IN = params_IN[ cls.PARAM_VALUE_EQUALS ]
                 
                 # filter query set.
-                results_qs_OUT.filter( value__iexact = value_equals_IN )
+                results_qs_OUT = results_qs_OUT.filter( value__iexact = value_equals_IN )
                 
             #-- END check to see if value_equals passed in. --#
             

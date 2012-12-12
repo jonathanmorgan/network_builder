@@ -560,6 +560,44 @@ class Node( Dated_Model ):
     #-- END method get_attribute_value() --#
 
     
+    def increment_count_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
+        
+        # return reference
+        value_OUT = False
+        
+        # declare variables
+        attr_value = None
+        counter_value = -1
+        
+        # make sure we have a name
+        if ( ( label_IN ) and ( label_IN != "" ) ):
+            
+            # got one.  get attribute with that name.
+            attr_value = self.get_attribute_value( label_IN, 0 )
+            
+            # get current value of counter.
+            counter_value = attr_value.value
+            
+            # add value_IN to it
+            counter_value += value_IN
+            
+            # store the value.
+            self.set_attribute_value( label_IN, counter_value )
+
+            success_OUT = True            
+
+        else:
+            
+            # no name - not success.
+            success_OUT = False
+            
+        #-- END check to see if name. --#
+
+        return success_OUT
+        
+    #-- END method increment_count_attribute() --#
+    
+
     def set_attribute_value( self, label_IN, value_IN, *args, **kwargs ):
         
         # return reference
@@ -960,7 +998,45 @@ class Tie( Dated_Model ):
         
     #-- END method get_attribute_value() --#
 
+
+    def increment_count_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
+        
+        # return reference
+        value_OUT = False
+        
+        # declare variables
+        attr_value = None
+        counter_value = -1
+        
+        # make sure we have a name
+        if ( ( label_IN ) and ( label_IN != "" ) ):
+            
+            # got one.  get attribute with that name.
+            attr_value = self.get_attribute_value( label_IN, 0 )
+            
+            # get current value of counter.
+            counter_value = attr_value.value
+            
+            # add value_IN to it
+            counter_value += value_IN
+            
+            # store the value.
+            self.set_attribute_value( label_IN, counter_value )
+
+            success_OUT = True            
+
+        else:
+            
+            # no name - not success.
+            success_OUT = False
+            
+        #-- END check to see if name. --#
+
+        return success_OUT
+        
+    #-- END method increment_count_attribute() --#
     
+
     def set_attribute_value( self, label_IN, value_IN, *args, **kwargs ):
         
         # return reference

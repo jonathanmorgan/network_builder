@@ -1167,7 +1167,7 @@ class Tie( Dated_Model ):
         if ( self.original_id ):
             
             # original ID present - output it.
-            string_OUT += ", id: " + self.original_id
+            string_OUT += ", id: " + str( self.original_id )
             
         #-- END check to see if original ID --#
         

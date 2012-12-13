@@ -560,16 +560,16 @@ class Node( Dated_Model ):
     #-- END method get_attribute_value() --#
 
     
-    def get_type_label( self ):
+    def get_type_label( self, *args, **kwargs ):
         
         # return reference
         value_OUT = ""
         
         # got a node_type?
-        if ( node_type ):
+        if ( self.node_type ):
             
             # we do.  Return label field.
-            value_OUT = node_type.label
+            value_OUT = self.node_type.label
             
         else:
             
@@ -1022,16 +1022,16 @@ class Tie( Dated_Model ):
     #-- END method get_attribute_value() --#
 
 
-    def get_type_label( self ):
+    def get_type_label( self, *args, **kwargs ):
         
         # return reference
         value_OUT = ""
         
         # got a node_type?
-        if ( tie_type ):
+        if ( self.tie_type ):
             
             # we do.  Return label field.
-            value_OUT = tie_type.label
+            value_OUT = self.tie_type.label
             
         else:
             

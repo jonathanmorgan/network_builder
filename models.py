@@ -583,7 +583,7 @@ class Node( Dated_Model ):
     #-- END method get_type_label() --#
 
     
-    def increment_numeric_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
+    def increment_integer_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
         
         # return reference
         value_OUT = False
@@ -598,8 +598,11 @@ class Node( Dated_Model ):
             # got one.  get attribute with that name.
             attr_value = self.get_attribute_value( label_IN, 0 )
             
+            # convert to int
+            attr_value = int( attr_value )
+
             # add value_IN to it
-            attr_value += value_IN
+            attr_value += int( value_IN )
             
             # store the value.
             self.set_attribute_value( label_IN, attr_value )
@@ -1042,7 +1045,7 @@ class Tie( Dated_Model ):
     #-- END method get_type_label() --#
 
     
-    def increment_numeric_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
+    def increment_integer_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
         
         # return reference
         value_OUT = False
@@ -1057,9 +1060,12 @@ class Tie( Dated_Model ):
             # got one.  get attribute with that name.
             attr_value = self.get_attribute_value( label_IN, 0 )
             
+            # convert to int
+            attr_value = int( attr_value )
+
             # add value_IN to it
-            attr_value += value_IN
-            
+            attr_value += int( value_IN )
+
             # store the value.
             self.set_attribute_value( label_IN, attr_value )
 

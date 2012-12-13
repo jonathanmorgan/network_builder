@@ -583,7 +583,7 @@ class Node( Dated_Model ):
     #-- END method get_type_label() --#
 
     
-    def increment_count_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
+    def increment_numeric_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
         
         # return reference
         value_OUT = False
@@ -1045,7 +1045,7 @@ class Tie( Dated_Model ):
     #-- END method get_type_label() --#
 
     
-    def increment_count_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
+    def increment_numeric_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
         
         # return reference
         value_OUT = False

@@ -598,14 +598,11 @@ class Node( Dated_Model ):
             # got one.  get attribute with that name.
             attr_value = self.get_attribute_value( label_IN, 0 )
             
-            # get current value of counter.
-            counter_value = attr_value.value
-            
             # add value_IN to it
-            counter_value += value_IN
+            attr_value += value_IN
             
             # store the value.
-            self.set_attribute_value( label_IN, counter_value )
+            self.set_attribute_value( label_IN, attr_value )
 
             success_OUT = True            
 
@@ -1060,14 +1057,11 @@ class Tie( Dated_Model ):
             # got one.  get attribute with that name.
             attr_value = self.get_attribute_value( label_IN, 0 )
             
-            # get current value of counter.
-            counter_value = attr_value.value
-            
             # add value_IN to it
-            counter_value += value_IN
+            attr_value += value_IN
             
             # store the value.
-            self.set_attribute_value( label_IN, counter_value )
+            self.set_attribute_value( label_IN, attr_value )
 
             success_OUT = True            
 

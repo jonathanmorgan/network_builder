@@ -560,6 +560,29 @@ class Node( Dated_Model ):
     #-- END method get_attribute_value() --#
 
     
+    def get_type_label( self ):
+        
+        # return reference
+        value_OUT = ""
+        
+        # got a node_type?
+        if ( node_type ):
+            
+            # we do.  Return label field.
+            value_OUT = node_type.label
+            
+        else:
+            
+            # no type.  Return empty string.
+            value_OUT = ""
+            
+        #-- END check to see if we have a node type --#
+        
+        return value_OUT
+        
+    #-- END method get_type_label() --#
+
+    
     def increment_count_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
         
         # return reference
@@ -999,6 +1022,29 @@ class Tie( Dated_Model ):
     #-- END method get_attribute_value() --#
 
 
+    def get_type_label( self ):
+        
+        # return reference
+        value_OUT = ""
+        
+        # got a node_type?
+        if ( tie_type ):
+            
+            # we do.  Return label field.
+            value_OUT = tie_type.label
+            
+        else:
+            
+            # no type.  Return empty string.
+            value_OUT = ""
+            
+        #-- END check to see if we have a node type --#
+        
+        return value_OUT
+        
+    #-- END method get_type_label() --#
+
+    
     def increment_count_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
         
         # return reference

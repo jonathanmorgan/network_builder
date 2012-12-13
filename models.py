@@ -635,7 +635,7 @@ class Node( Dated_Model ):
             
             # got one.  look for associated attributes with that name.
             
-            # get QuerySet of attributes for this Tie.
+            # get QuerySet of attributes for this Node.
             attr_qs = self.node_attribute_value_set.all()
             
             # filter based on label passed in.
@@ -653,7 +653,7 @@ class Node( Dated_Model ):
                 attr_value = Node_Attribute_Value()
                 
                 # set values
-                attr_value.tie = self
+                attr_value.node = self
                 attr_value.label = label_IN
                 attr_value.name = label_IN
                 

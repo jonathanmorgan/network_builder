@@ -1002,7 +1002,7 @@ class Tie( Dated_Model ):
             else:
                 
                 # no attribute for that name.  If default, return it.
-                if ( default_IN ):
+                if ( default_IN != None ):
                     
                     value_OUT = default_IN
                     

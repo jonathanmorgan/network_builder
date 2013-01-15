@@ -1060,16 +1060,26 @@ class Tie( Dated_Model ):
             # got one.  get attribute with that name.
             attr_value = self.get_attribute_value( label_IN, 0 )
             
-            # convert to int
-            attr_value = int( attr_value )
+            # got a value?
+            if ( attr_value != None ):
 
-            # add value_IN to it
-            attr_value += int( value_IN )
+                # convert to int
+                attr_value = int( attr_value )
+    
+                # add value_IN to it
+                attr_value += int( value_IN )
+    
+                # store the value.
+                self.set_attribute_value( label_IN, attr_value )
+    
+                success_OUT = True            
 
-            # store the value.
-            self.set_attribute_value( label_IN, attr_value )
-
-            success_OUT = True            
+            else:
+                
+                # nothing passed in, do nothing.
+                success_OUT = False
+                
+            #-- END check to see if value passed in. --#
 
         else:
             

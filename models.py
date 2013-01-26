@@ -500,6 +500,19 @@ class Node( Dated_Model ):
     original_id = models.CharField( max_length = 255, blank = True, null = True )
     original_table = models.CharField( max_length = 255, blank = True, null = True )
     description = models.TextField( blank = True, null = True )
+
+    # attribute storage variables - up to 10, no need for Node_Attribute_Value
+    attribute_1 = models.TextField( blank = True, null = True )
+    attribute_2 = models.TextField( blank = True, null = True )
+    attribute_3 = models.TextField( blank = True, null = True )
+    attribute_4 = models.TextField( blank = True, null = True )
+    attribute_5 = models.TextField( blank = True, null = True )
+    attribute_6 = models.TextField( blank = True, null = True )
+    attribute_7 = models.TextField( blank = True, null = True )
+    attribute_8 = models.TextField( blank = True, null = True )
+    attribute_9 = models.TextField( blank = True, null = True )
+    attribute_10 = models.TextField( blank = True, null = True )
+
     #more to come
 
     
@@ -959,9 +972,24 @@ class Tie( Dated_Model ):
     original_table = models.CharField( max_length = 255, blank = True, null = True )
     description = models.TextField( blank = True, null = True )
     from_node = models.ForeignKey( Node, related_name = "ties_out_set" )
+    from_original_id = models.CharField( max_length = 255, blank = True, null = True )
     to_node = models.ForeignKey( Node, related_name = "ties_in_set" )
+    to_original_id = models.CharField( max_length = 255, blank = True, null = True )
     directed = models.BooleanField( 'Is Directed?', default = True )
     valid_node_types = models.ManyToManyField( Node_Type, blank = True, null = True )
+
+    # attribute storage variables - up to 10, no need for Tie_Attribute_Value
+    attribute_1 = models.TextField( blank = True, null = True )
+    attribute_2 = models.TextField( blank = True, null = True )
+    attribute_3 = models.TextField( blank = True, null = True )
+    attribute_4 = models.TextField( blank = True, null = True )
+    attribute_5 = models.TextField( blank = True, null = True )
+    attribute_6 = models.TextField( blank = True, null = True )
+    attribute_7 = models.TextField( blank = True, null = True )
+    attribute_8 = models.TextField( blank = True, null = True )
+    attribute_9 = models.TextField( blank = True, null = True )
+    attribute_10 = models.TextField( blank = True, null = True )
+
     #more to come
 
     

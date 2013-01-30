@@ -521,6 +521,25 @@ class Node( Dated_Model ):
     #----------------------------------------------------------------------
 
 
+    def get_attribute_int_value( self, label_IN, default_IN = None, *args, **kwargs ):
+        
+        # return reference
+        value_OUT = None
+        
+        # declare variables
+        attr_value = None
+        
+        # get attribute
+        attr_value = self.get_attribute_value( label_IN, default_IN )
+
+        # convert to int.
+        value_OUT = int( attr_value )
+        
+        return value_OUT
+        
+    #-- END method get_attribute_int_value() --#
+
+
     def get_attribute_value( self, label_IN, default_IN = None, *args, **kwargs ):
         
         # return reference
@@ -996,6 +1015,25 @@ class Tie( Dated_Model ):
     #----------------------------------------------------------------------
     # !instance methods
     #----------------------------------------------------------------------
+
+
+    def get_attribute_int_value( self, label_IN, default_IN = None, *args, **kwargs ):
+        
+        # return reference
+        value_OUT = None
+        
+        # declare variables
+        attr_value = None
+        
+        # get attribute
+        attr_value = self.get_attribute_value( label_IN, default_IN )
+
+        # convert to int.
+        value_OUT = int( attr_value )
+        
+        return value_OUT
+        
+    #-- END method get_attribute_int_value() --#
 
 
     def get_attribute_value( self, label_IN, default_IN = None, *args, **kwargs ):

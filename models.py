@@ -842,7 +842,7 @@ class Node_Type_Attribute_Deriv_Param( Name_Value_Pair_Model ):
 
 
 # Node Model
-class Node( Dated_Model ):
+class Node( Attribute_Container_Model ):
 
     '''
     Model Node is the base model for holding information on nodes.  Info. common
@@ -850,6 +850,13 @@ class Node( Dated_Model ):
        types of nodes are stored in NodeTypeAttributeValue.
     '''
 
+    #----------------------------------------------------------------------
+    # instance variables
+    #----------------------------------------------------------------------
+
+    attribute_value_class_module = "E2.models"
+    attribute_value_class_name = "Node_Attribute_Value"
+    
     #----------------------------------------------------------------------
     # fields
     #----------------------------------------------------------------------
@@ -880,75 +887,22 @@ class Node( Dated_Model ):
     #----------------------------------------------------------------------
 
 
-    def get_attribute_int_value( self, label_IN, default_IN = None, *args, **kwargs ):
+    def get_attribute_value_qs( self, *args, **kwargs ):
+        
+        '''
+        This is a method a descendent of Attribute_Container_Model must
+           implement.
+        '''
         
         # return reference
         value_OUT = None
         
-        # declare variables
-        attr_value = None
-        
-        # get attribute
-        attr_value = self.get_attribute_value( label_IN, default_IN )
+        # use it to make a QuerySet
+        value_OUT = self.node_attribute_value_set.all()
 
-        # convert to int.
-        value_OUT = int( attr_value )
-        
         return value_OUT
         
-    #-- END method get_attribute_int_value() --#
-
-
-    def get_attribute_value( self, label_IN, default_IN = None, *args, **kwargs ):
-        
-        # return reference
-        value_OUT = None
-        
-        # declare variables
-        attr_qs = None
-        attr_value = None
-        
-        # make sure we have a name
-        if ( ( label_IN ) and ( label_IN != "" ) ):
-            
-            # got one.  look for associated attributes with that name.
-            
-            # get QuerySet of attributes for this Tie.
-            attr_qs = self.node_attribute_value_set.all()
-            
-            # filter based on label passed in.
-            attr_qs = attr_qs.filter( label = label_IN )
-            
-            # anything in it?
-            if ( ( attr_qs ) and ( attr_qs > 0 ) ):
-                
-                # got at least one attribute.  For now, grab first one.
-                attr_value = attr_qs[ 0 ]
-                
-                # return value in that instance
-                value_OUT = attr_value.value
-                
-            else:
-                
-                # no attribute for that name.  If default, return it.
-                if ( default_IN ):
-                    
-                    value_OUT = default_IN
-                    
-                #-- END check to see if default --#
-                
-            #-- END check to see if any matching attributes. --#
-        
-        else:
-            
-            # no name - return None.
-            value_OUT = None
-            
-        #-- END check to see if name. --#
-        
-        return value_OUT
-        
-    #-- END method get_attribute_value() --#
+    #-- END method get_attribute_value_qs() --#
 
     
     def get_type_label( self, *args, **kwargs ):
@@ -972,99 +926,6 @@ class Node( Dated_Model ):
         return value_OUT
         
     #-- END method get_type_label() --#
-
-    
-    def increment_integer_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
-        
-        # return reference
-        value_OUT = False
-        
-        # declare variables
-        attr_value = None
-        counter_value = -1
-        
-        # make sure we have a name
-        if ( ( label_IN ) and ( label_IN != "" ) ):
-            
-            # got one.  get attribute with that name.
-            attr_value = self.get_attribute_value( label_IN, 0 )
-            
-            # convert to int
-            attr_value = int( attr_value )
-
-            # add value_IN to it
-            attr_value += int( value_IN )
-            
-            # store the value.
-            self.set_attribute_value( label_IN, attr_value )
-
-            success_OUT = True            
-
-        else:
-            
-            # no name - not success.
-            success_OUT = False
-            
-        #-- END check to see if name. --#
-
-        return success_OUT
-        
-    #-- END method increment_count_attribute() --#
-    
-
-    def set_attribute_value( self, label_IN, value_IN, *args, **kwargs ):
-        
-        # return reference
-        success_OUT = False
-        
-        # declare variables
-        attr_qs = None
-        attr_value = None
-        
-        # make sure we have a name
-        if ( ( label_IN ) and ( label_IN != "" ) ):
-            
-            # got one.  look for associated attributes with that name.
-            
-            # get QuerySet of attributes for this Node.
-            attr_qs = self.node_attribute_value_set.all()
-            
-            # filter based on label passed in.
-            attr_qs = attr_qs.filter( label = label_IN )
-            
-            # anything in it?
-            if ( ( attr_qs ) and ( attr_qs > 0 ) ):
-                
-                # got at least one attribute.  For now, grab first one.
-                attr_value = attr_qs[ 0 ]
-                
-            else:
-                
-                # no attribute for that name.  Make a new one.
-                attr_value = Node_Attribute_Value()
-                
-                # set values
-                attr_value.node = self
-                attr_value.label = label_IN
-                attr_value.name = label_IN
-                
-            #-- END check to see if any matching attributes. --#
-            
-            # attribute made.  Set value and save.
-            attr_value.value = value_IN
-            attr_value.save()
-            success_OUT = True
-        
-        else:
-            
-            # no name - return None.
-            success_OUT = False
-            
-        #-- END check to see if name. --#
-        
-        return success_OUT
-        
-    #-- END method set_attribute_value() --#
 
     
     def __unicode__( self ):
@@ -1333,7 +1194,7 @@ class Tie_Type_Attribute_Deriv_Param( Name_Value_Pair_Model ):
 
 
 # Tie Model
-class Tie( Dated_Model ):
+class Tie( Attribute_Container_Model ):
 
     '''
     Model Tie is the base model for holding information on ties.  Info. common
@@ -1341,6 +1202,13 @@ class Tie( Dated_Model ):
        types of ties for each tie are stored in TieTypeAttributeValue.
     '''
 
+    #----------------------------------------------------------------------
+    # -instance variables
+    #----------------------------------------------------------------------
+
+    attribute_value_class_module = "E2.models"
+    attribute_value_class_name = "Tie_Attribute_Value"
+    
     #----------------------------------------------------------------------
     # fields
     #----------------------------------------------------------------------
@@ -1377,77 +1245,24 @@ class Tie( Dated_Model ):
     #----------------------------------------------------------------------
 
 
-    def get_attribute_int_value( self, label_IN, default_IN = None, *args, **kwargs ):
+    def get_attribute_value_qs( self, *args, **kwargs ):
+        
+        '''
+        This is a method a descendent of Attribute_Container_Model must
+           implement.
+        '''
         
         # return reference
         value_OUT = None
         
-        # declare variables
-        attr_value = None
-        
-        # get attribute
-        attr_value = self.get_attribute_value( label_IN, default_IN )
+        # use it to make a QuerySet
+        value_OUT = self.tie_attribute_value_set.all()
 
-        # convert to int.
-        value_OUT = int( attr_value )
-        
         return value_OUT
         
-    #-- END method get_attribute_int_value() --#
+    #-- END method get_attribute_value_qs() --#
 
-
-    def get_attribute_value( self, label_IN, default_IN = None, *args, **kwargs ):
-        
-        # return reference
-        value_OUT = None
-        
-        # declare variables
-        attr_qs = None
-        attr_value = None
-        
-        # make sure we have a label
-        if ( ( label_IN ) and ( label_IN != "" ) ):
-            
-            # got one.  look for associated attributes with that name.
-            
-            # get QuerySet of attributes for this Tie.
-            attr_qs = self.tie_attribute_value_set.all()
-            
-            # filter based on label passed in.
-            attr_qs = attr_qs.filter( label = label_IN )
-            
-            # anything in it?
-            if ( ( attr_qs ) and ( attr_qs > 0 ) ):
-                
-                # got at least one attribute.  For now, grab first one.
-                attr_value = attr_qs[ 0 ]
-                
-                # return value in that instance
-                value_OUT = attr_value.value
-                
-            else:
-                
-                # no attribute for that name.  If default, return it.
-                if ( default_IN != None ):
-                    
-                    value_OUT = default_IN
-                    
-                #-- END check to see if default --#
-                
-            #-- END check to see if any matching attributes. --#
-        
-        else:
-            
-            # no name - return None.
-            value_OUT = None
-            
-        #-- END check to see if name. --#
-        
-        return value_OUT
-        
-    #-- END method get_attribute_value() --#
-
-
+    
     def get_type_label( self, *args, **kwargs ):
         
         # return reference
@@ -1469,109 +1284,6 @@ class Tie( Dated_Model ):
         return value_OUT
         
     #-- END method get_type_label() --#
-
-    
-    def increment_integer_attribute( self, label_IN, value_IN = 1, *args, **kwargs ):
-        
-        # return reference
-        value_OUT = False
-        
-        # declare variables
-        attr_value = None
-        counter_value = -1
-        
-        # make sure we have a name
-        if ( ( label_IN ) and ( label_IN != "" ) ):
-            
-            # got one.  get attribute with that name.
-            attr_value = self.get_attribute_value( label_IN, 0 )
-            
-            # got a value?
-            if ( attr_value != None ):
-
-                # convert to int
-                attr_value = int( attr_value )
-    
-                # add value_IN to it
-                attr_value += int( value_IN )
-    
-                # store the value.
-                self.set_attribute_value( label_IN, attr_value )
-    
-                success_OUT = True            
-
-            else:
-                
-                # nothing passed in, do nothing.
-                success_OUT = False
-                
-            #-- END check to see if value passed in. --#
-
-        else:
-            
-            # no name - not success.
-            success_OUT = False
-            
-        #-- END check to see if name. --#
-
-        return success_OUT
-        
-    #-- END method increment_count_attribute() --#
-    
-
-    def set_attribute_value( self, label_IN, value_IN, *args, **kwargs ):
-        
-        # return reference
-        success_OUT = False
-        
-        # declare variables
-        attr_qs = None
-        attr_value = None
-        
-        # make sure we have a name
-        if ( ( label_IN ) and ( label_IN != "" ) ):
-            
-            # got one.  look for associated attributes with that name.
-            
-            # get QuerySet of attributes for this Tie.
-            attr_qs = self.tie_attribute_value_set.all()
-            
-            # filter based on label passed in.
-            attr_qs = attr_qs.filter( label = label_IN )
-            
-            # anything in it?
-            if ( ( attr_qs ) and ( attr_qs > 0 ) ):
-                
-                # got at least one attribute.  For now, grab first one.
-                attr_value = attr_qs[ 0 ]
-                
-            else:
-                
-                # no attribute for that name.  Make a new one.
-                attr_value = Tie_Attribute_Value()
-                
-                # set values
-                attr_value.tie = self
-                attr_value.label = label_IN
-                attr_value.name = label_IN
-                
-            #-- END check to see if any matching attributes. --#
-            
-            # attribute made.  Set value and save.
-            attr_value.value = value_IN
-            attr_value.save()
-            success_OUT = True
-        
-        else:
-            
-            # no name - return None.
-            success_OUT = False
-            
-        #-- END check to see if name. --#
-        
-        return success_OUT
-        
-    #-- END method set_attribute_value() --#
 
     
     def __unicode__( self ):

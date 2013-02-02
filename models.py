@@ -864,7 +864,7 @@ class Node( Attribute_Container_Model ):
     # instance variables
     #----------------------------------------------------------------------
 
-    attribute_value_class_module = "E2.models"
+    attribute_value_class_module = "network_builder.models"
     attribute_value_class_name = "Node_Attribute_Value"
     
     #----------------------------------------------------------------------
@@ -1216,7 +1216,7 @@ class Tie( Attribute_Container_Model ):
     # -instance variables
     #----------------------------------------------------------------------
 
-    attribute_value_class_module = "E2.models"
+    attribute_value_class_module = "network_builder.models"
     attribute_value_class_name = "Tie_Attribute_Value"
     
     #----------------------------------------------------------------------

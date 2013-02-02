@@ -108,7 +108,7 @@ class Attribute_Container_Model( Dated_Model ):
     #----------------------------------------------------------------------
 
 
-    def get_attribute_int_value( self, label_IN, default_IN = None, *args, **kwargs ):
+    def get_attribute_int_value( self, label_IN, default_IN = 0, *args, **kwargs ):
         
         # return reference
         value_OUT = None
@@ -119,8 +119,18 @@ class Attribute_Container_Model( Dated_Model ):
         # get attribute
         attr_value = self.get_attribute_value( label_IN, default_IN )
 
-        # convert to int.
-        value_OUT = int( attr_value )
+        # convert to int if not None.
+        if ( ( attr_value ) and ( attr_value != None ) ):
+            
+            # Not none - convert to int.
+            value_OUT = int( attr_value )
+            
+        else:
+            
+            # None - convert default to int.
+            value_OUT = int( default_IN )
+            
+        #-- END check to make sure we don't try to convert None to int. --#       
         
         return value_OUT
         

@@ -375,7 +375,7 @@ class Attribute_Container_Model( Dated_Model ):
             else:
                 
                 # no attribute for that name.  Make a new one.
-                attr_value = self.get_atribute_value_instance()
+                attr_value = self.get_attribute_value_instance()
                 
                 # set values
                 attr_value.tie = self

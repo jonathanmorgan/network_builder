@@ -1,3 +1,23 @@
+'''
+Copyright 2011-2013 Jonathan Morgan
+
+This file is part of http://github.com/jonathanmorgan/network_builder.
+
+network_builder is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+network_builder is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with http://github.com/jonathanmorgan/network_builder.  If not, see
+<http://www.gnu.org/licenses/>.
+'''
+
 __author__="jonathanmorgan"
 __date__ ="$May 1, 2010 6:26:35 PM$"
 
@@ -21,9 +41,9 @@ import StringIO
 # Import the classes for our SourceNet application
 #from mysite.sourcenet.models import Article
 #from mysite.sourcenet.models import Article_Author
-from mysite.sourcenet.models import Article_Source
+from sourcenet.models import Article_Source
 #from mysite.sourcenet.models import Person
-from mysite.sourcenet.models import Topic
+from sourcenet.models import Topic
 
 
 #===============================================================================

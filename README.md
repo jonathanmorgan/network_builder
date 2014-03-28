@@ -1,17 +1,14 @@
-network_builder
-===============
+# network_builder
 
 Django network_builder application, models to build and persist network data - nodes and ties of multiple types with attribute data.
 
 This is going to be great.  More details to come.
 
-Installing network_builder
-==========================
+# Installing network_builder
 
 To install:
 
-Django:
--------
+## Django:
 
 * before you do anything else, if you aren't familiar with django, it is good to just run through the django tutorial, to get an idea how it all works, what it takes to configure django to talk with a database (http://docs.djangoproject.com/en/dev/intro/tutorial01/).
 
@@ -59,13 +56,11 @@ Django:
 
 * play (and hope it doesn't break!).
 
-Using Network Builder
-=====================
+# Using Network Builder
 
 For now, just have classes/models that hold network information pre-query.
 
-Configuration
--------------
+## Configuration
 
 * use manage.py to load the attribute types fixtures:
 
@@ -81,19 +76,18 @@ Configuration
 
 * to include the network builder classes in another program, you'll need to import the classes.  For example, to use nodes, node types, ties, and tie types, after making sure that the network_builder packages is in your python path, you'd include the following imports in your python source file:
 
-    # THEREPOOFDOOM network classes, for building messaging networks for users.
-    from network_builder.models import Node
-    from network_builder.models import Node_Type
-    from network_builder.models import Tie
-    from network_builder.models import Tie_Type
+        from network_builder.models import Node
+        from network_builder.models import Node_Type
+        from network_builder.models import Tie
+        from network_builder.models import Tie_Type
 
     OR, you could just import the network_builder package if you want to maintain namespace separation (in case you have a Node class already, for example):
 
-    import network_builder
+        import network_builder
 
     THEN reference:
 
-    network_builder.models.Node()
+        network_builder.models.Node()
 
     to create a Node instance, etc.
 
